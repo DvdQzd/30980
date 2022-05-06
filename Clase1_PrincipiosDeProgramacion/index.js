@@ -41,7 +41,6 @@ console.clear();
 //     if(true) {
 //         let apellido = "fulanito";
 //         var edad = 32;
-        
 //     }
     
 //     let saludo = `Bienvenido a coderhouse ${name}, mi edad es: ${edad}`;
@@ -84,8 +83,20 @@ console.log(`Nombre de la variable: ${nombre}`);
 console.log(`La edad de la variable es: ${edad}`);
 console.log(`Precio: $${precio.toFixed(2)}`);
 console.log(`Mis series favoritas son: ${seriesFavoritas}`);
-console.log(`Mis peliculas favoritas son: ${peliculasFavoritas}`);
-
+console.log(`SOLO UNA PELICULA: ${peliculasFavoritas[0]}`);
+//OPCION 1
+console.log("OPCION 1");
+for (let i = 0; i < peliculasFavoritas.length; i++) {
+    console.log(peliculasFavoritas)
+}
+//OPCION 2
+console.log("OPCION 2");
+for (const elementos in peliculasFavoritas) {
+    console.log(elementos);
+}
+//OPCION 3
+console.log("OPCION 3");
+console.log(JSON.stringify(peliculasFavoritas, null, 2));
 console.log(`mi nueva edad es: ${edad + 1}`);
 
 edad = edad + 1;
