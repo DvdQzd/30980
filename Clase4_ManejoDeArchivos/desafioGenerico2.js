@@ -1,0 +1,49 @@
+// Escribir un programa ejecutable bajo node.js que realice las siguientes acciones:
+// A) Abra una terminal en el directorio del archivo y ejecute la instrucción: npm init -y.
+//     Esto creará un archivo especial (lo veremos más adelante) de nombre package.json
+// B) Lea el archivo package.json y declare un objeto con el siguiente formato y datos:
+// const info = {
+//     contenidoStr: (contenido del archivo leído en formato string),
+//     contenidoObj: (contenido del archivo leído en formato objeto),
+//     size: (tamaño en bytes del archivo)
+// }
+// C) Muestre por consola el objeto info luego de leer el archivo
+// D) Guardar el objeto info en un archivo llamado info.txt dentro de la misma carpeta de package.json
+// E) Incluir el manejo de errores (con throw new Error)
+
+// Utilizar la lectura y escritura de archivos en modo asincrónico con callbacks.
+// - Consigna B): Para deserializar un string con contenido JSON utilizar JSON.parse (convierte string en object).
+// - Consigna C): Para serializar un objeto (convertirlo a string) y guardarlo en un archivo utilizar JSON.stringify.
+
+// Ayuda:
+// Para el Punto 3 considerar usar JSON.stringify(info, null, 2) para preservar el formato de representación del objeto en el archivo (2 representa en este caso la cantidad de espacios de indentación usadas al representar el objeto como string).
+
+const fs = require('fs');
+console.clear();
+
+
+// SINCRONICO
+( () => {
+
+    fs.readFile("package.json", ( err, file) => {
+        if(err) {
+            // return console.log("Hemos rotido todo el programamiento!");
+            throw new Error('Ha ocurrido un error');
+        }
+
+        let info = {
+            contenidoStr: file.toString(),
+            contenidoObj: JSON.parse(file),
+            size: file.toString().length
+        }
+        
+        console.log(info);
+
+        fs.writeFile("info.txt", JSON.stringify(info, null, 2), err => {
+            if(err) {
+                throw new Error("Ha muertado todo el programamiento!: ", err);
+            }
+            console.log("done!");
+        })
+    })
+})()
