@@ -1,0 +1,17 @@
+Ejemplo:
+    
+    nuestraLibreria: 4.18.2
+
+* NPM VERSION PATCH, MINOR, MAJOR
+
+DONDE: 
+    - el primer numero es MAJOR
+    - el segundo numero es MINOR
+    - el tercer numero es patch
+
+* VERSIONADO DE LAS LIBRERIAS
+    - ~ SOLO PATCHES
+    - ^ SOLO MINOR Y PATCHES
+    - * SIEMPRE
+    - SIN NADA ES SOLO ESA VERSION
+    DESPUES HAY OTRAS COMO <, >, >=, <=
