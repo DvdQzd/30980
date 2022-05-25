@@ -91,7 +91,10 @@ app.delete('/api/palabras/:pos', (req, res) => {
         return res.status(400).json({error: 'El parametro está fuera del rango'});
     }
 
-    frase = fraseArray.splice(pos, 1);
+    fraseArray.splice(pos, 1);  // OJO NO LO JUNTO PORQUR QUEDA MAL EL RESULTADO, DOUMENTACION DE SPLICE: 
+                                        // Un array que contiene los elementos eliminados. Si sólo se ha eliminado         
+                                        // un elemento, devuelve un array con un solo elemento. Si no se ha eliminado ningún elemento, devuelve un array vacío.
+    frase = fraseArray.join(' ');
     console.log(frase);
     res.status(200).send(frase);
 });
