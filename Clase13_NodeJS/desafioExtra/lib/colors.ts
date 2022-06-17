@@ -5,8 +5,6 @@
 // npm i typescript
 // ./node_modules/.bin/tsc --init --> crea el arhivo tsconfig.json que vamos a usar como modelo
 
-const MAX:number = 255;
-
 class Colors {
     private color:string = "";
 
@@ -15,7 +13,7 @@ class Colors {
     }
 
     private rndColor():number {
-        return Math.floor(MAX * Math.random());
+        return Math.floor(255 * Math.random());
     }
 
     getColor = () =>( this.color )

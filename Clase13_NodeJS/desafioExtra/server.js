@@ -1,14 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var app = (0, express_1.default)();
+var express = require('express');
+var app = express();
 var PORT = 8080;
-var colors_1 = __importDefault(require("./lib/colors"));
+var colors = require('./lib/colors.ts');
 app.get('/getColor', function (req, res) {
-    var miColor = new colors_1.default();
+    var miColor = new colors();
     res.status(200).send(miColor.getColor());
 });
 app.listen(PORT, function () { console.log("Server running on PORT: ".concat(PORT)); });
