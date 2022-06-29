@@ -1,0 +1,64 @@
+Realizar las siguientes acciones utilizando un servidor de base de datos MongoDB:
+
+- Ejecutar en una consola el motor de base de datos MongoDB, que debe seleccionar la carpeta 'base' 
+    como almacenamiento de su estructura.
+
+- Iniciar Mongo shell en otra consola, verificando la conexión con el servidor.
+
+- Listar las bases de datos disponibles
+- Crear una base de datos en MongoDB llamada 'sistema' y seleccionarla con base de trabajo.
+- Insertar un documento en la colección usuarios que contenga los campos: nombre y edad.
+- Listar los documentos dentro de la colección usuarios.
+- Mostrar las colecciones de la base 'sistema'.
+- Insertar tres documentos más con el mismo formato y valores distintos en la colección usuarios.
+- Listarlos nuevamente verificando que haya 4 documentos dentro de la colección usuarios.
+- Insertar dentro de una colección llamada 'productos' cuatro documentos con los siguientes campos: nombre, precio y stock.
+- Mostrar las colecciones de la base 'sistema'.
+Listar todos los documentos de la colección 'productos'.
+
+
+
+* show dbs  || show databases
+
+* use sistema
+
+* db._Collection_.insertMany([{},{},{}])   --- db._Collection_.insertOne({})
+
+db.usuarios.insertOne({"Nombre": "juan", "Apellido" : "perez"});
+
+db.usuarios.insertMany([
+    {"Nombre": "Cosme", "Apellido" : "Fulanito"},
+    {"Nombre": "Atr", "Apellido" : "Perro"},
+    {"Nombre": "Chanchito", "Apellido" : "Feliz"},
+    {"Nombre": "Hernan", "Apellido" : "Diaz"},
+]);
+
+db.usuarios.find({})
+show collections
+
+db.usuarios.insertMany([
+    {"Nombre": "Pedro", "Apellido" : "Perez"},
+    {"Nombre": "Juana", "Apellido" : "Mei"},
+    {"Nombre": "John", "Apellido" : "Doe"}
+]);
+
+// --- El siguiente es un ejemplo de el error que podemos cometer con Mongo
+db.usuarios.insertMany([
+    {"Nombre": "Pedro"},
+    {"Nombre": "Juana", "Apellido" : "Mei"},
+    {"Nombre": "John", "Apellido" : "Doe"}
+]);
+// ---
+
+db.usuarios.find({});
+
+db.productos.insertMany([
+    {"Nombre": "computadora", "precio" : 220000, "stock": 10},
+    {"Nombre": "notebook", "precio" : 123456, "stock": 1},
+    {"Nombre": "monitor", "precio" : 90000, "stock": 8},
+    {"Nombre": "teclado", "precio" : 11250, "stock": 20}
+]);
+
+show collections;
+
+db.productos.find();
