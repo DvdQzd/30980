@@ -50,3 +50,8 @@ const articulos = [
         console.log("Error: ", e);
     }
 })();
+
+
+module.exports = {
+    insertProducts
+}
