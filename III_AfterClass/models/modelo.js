@@ -20,7 +20,7 @@ queryInterface.createTable('productos', {
   codigo: {type: DataTypes.STRING(10), allowNull: false},
   precio: {type: DataTypes.FLOAT},
   stock: {type: DataTypes.INTEGER}
-})
+});
 
 const chat = sequelize.define('chat', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},

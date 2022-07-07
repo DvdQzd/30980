@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const { productos } = require('../models/modelo');
 // producto = {
 //     id,
 //     timestamp,
@@ -31,7 +32,7 @@ const addProducts = (req, res) => {
             stock
         }
     
-        productos.push(producto);
+        productos.create(producto);
         res.status(200).json({message: "producto agregado", producto});
     } catch (e) {
         console.log(e);
@@ -40,11 +41,15 @@ const addProducts = (req, res) => {
 };
 
 const getById = (req, res) => {
-    const { id } = req.params;
-    
-    const response = getProductById(id);
 
-    res.status(200).send(response);
+    try {        
+        const { id } = req.params;
+
+        const response = await productos.findById(id);    
+        res.status(200).send(response);
+    } catch (e) {
+        console.log("Error al leer producto en la DB: ", e);
+    }
 }
 
 const updateProducts = async (req, res) => {
