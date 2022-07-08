@@ -1,4 +1,5 @@
 const { Sequelize, Model } = require('sequelize');
+const mongoose = require('mongoose');
 var mysql = require('mysql');
 
 const sequelize = new Sequelize('sistema', 'root', '', {
@@ -7,7 +8,7 @@ const sequelize = new Sequelize('sistema', 'root', '', {
     password: ''
 });
 
-const connect = async () => {
+const connectSQL = async () => {
 
     try {
         await sequelize.authenticate();
@@ -17,6 +18,16 @@ const connect = async () => {
     }
 }
 
+const connectMong = async () => {
+    try {
+        const CS = 'mongodb://localhost:27017/colegio';
+        await mongoose.connect(CS);
+    } catch (error) {
+        
+    }
+}
+
 module.exports = {
-    connect
+    connectSQL,
+    connectMong
 }

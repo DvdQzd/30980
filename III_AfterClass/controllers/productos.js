@@ -31,7 +31,7 @@ const addProducts = (req, res) => {
             precio,
             stock
         }
-    
+
         productos.create(producto);
         res.status(200).json({message: "producto agregado", producto});
     } catch (e) {

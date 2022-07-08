@@ -4,7 +4,7 @@ const routes = require('./routes/index');
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-const { connect } = require('./models/databaseConnection');
+const { connectSQL, connectMong } = require('./models/databaseConnection');
 const { chat } = require('./models/modelo');
 const PORT = 8080;
 
@@ -40,6 +40,7 @@ const emitir = async () => {
 const sendUsers = () => io.sockets.emit('usersList', users);
 
 server.listen(process.env.PORT || PORT, async () => {
-    await connect();
+    await connectSQL();
+    await connectMong();
     console.log(`Server running on PORT: ${PORT}`);
 });
