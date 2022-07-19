@@ -1,6 +1,11 @@
 const router = require('express').Router();
-const { addCarrito } = require('../controllers/carrito');
+const { getCarritoById, createCarrito, addProductoToCarrito, deleteProductFromCarrito, deleteCarrito } = require('../controllers/carrito');
 
-router.post('/:id/productos', addCarrito);
+router.get('/:id', getCarritoById);
+router.post('/', createCarrito);
+router.post('/:id/productos/:id_prod', addProductoToCarrito);
+router.delete('/:id/productos/:id_prod', deleteProductFromCarrito);
+router.delete('/:id', deleteCarrito);
+
 
 module.exports = router;

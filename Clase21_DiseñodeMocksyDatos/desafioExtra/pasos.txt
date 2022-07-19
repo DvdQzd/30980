@@ -1,0 +1,2 @@
+1 npm i mocha chai
+2 setear package json, el script "test" con: "mocha test.js"
