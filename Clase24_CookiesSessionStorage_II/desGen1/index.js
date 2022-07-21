@@ -7,11 +7,17 @@
 
 const express = require('express');
 const session = require('express-session');
+const fileStore = require('session-file-store')(session);
 const router = require('./router/sessionRouter');
 const app = express();
 const PORT = 8080;
 
 app.use(session({
+    store: new fileStore({
+        path: './sesiones',
+        ttl: 60,
+        retries: 0
+    }),
     secret: "estoesunaresecret",
     resave: true,
     saveUninitialized: true,
