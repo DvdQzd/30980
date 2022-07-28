@@ -1,17 +1,17 @@
 let Users = [];
 
-const add = (name, password) => {
-    const userExists = get(name);
+const add = (username, password, address) => {
+    const userExists = get(username);
     if(userExists) {
         throw new Error
     }
 
-    const user = {name, password};
+    const user = {username, password, address};
     Users.push(user);
     return user;
 };
 
-const get = (name) => (Users.find(el => el.name === name));
+const get = (username) => (Users.find(el => el.username === username));
 
 
 module.exports = {

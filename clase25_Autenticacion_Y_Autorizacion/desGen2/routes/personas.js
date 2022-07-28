@@ -1,8 +1,8 @@
 const routes = require('express').Router();
-const { login } = require('../middlewares/auth');
+const { checkAuthentication } = require('../middlewares/utilDeMidlewares');
 const { get, insert } = require('../controllers/personas');
 
-routes.get('/', login, get);
-routes.post('/', login, insert);
+routes.get('/', checkAuthentication, get);
+routes.post('/', checkAuthentication, insert);
 
 module.exports = routes

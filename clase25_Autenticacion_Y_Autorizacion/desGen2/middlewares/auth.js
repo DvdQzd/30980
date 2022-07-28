@@ -1,34 +1,47 @@
 const { add, get} = require('../models/users');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-passport.use('login', new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        if (!user.verifyPassword(password)) { return done(null, false); }
-        return done(null, user);
-      });
-    }
-  ));
+//-----------------
+//
+//    RECORDAR QUE POR DEFECTO PASSPORT TOMA USERNAME COMO DATO,
+//    SI LO CAMBIAMOS (POR NOMBRE, MAIL U OTRA COSA) HAY QUE AGREGAR
+//    EN EL MIDDLEWARE EL DATO usernameField: 'nombre'
+//
+//-------------------
 
-// const login = (req, res, next) => {
+passport.use('login', new LocalStrategy({
+      passReqToCallback: true,
+    }, function(req, username, password, next) {
+      
+      let user = get(username);
 
-//     if(req.session?.nombre) {
-//         next();
-//     } else {
+      if( user && user.username === username && user.password === password){
+        return next(null, user);
+      } else {
+        return next(null, false);
+      }
+    })
+);
 
-//         const {name, password} = req.body;
-//         const user = get(name);
-//         console.log("user: ", user);
-//         if( user && user.name === name && user.password === password) {
-//             req.session.nombre = name;
-//             next();
-//         } else {
-//             res.render('pages/indexLogin.ejs', {message: "not authorized"});
-//         }
-//     }
-// }
+passport.use('register', new LocalStrategy({
+    passReqToCallback: true,
+  }, function(req, username, password, next) {
+    let usuario = get(username);
+    if(usuario) return(null, false);
 
-// module.exports = {
-//     login
-// }
+    const { address } = req.body;
+    let user = add(username, password, address);
+    return next(null, user);
+}));
+
+passport.serializeUser(function(user, next) {
+  console.log(user);
+  next(null, user.username);
+});
+
+passport.deserializeUser(function(username, next) {
+  console.log(username);
+  let usuario = get(username);
+  next(null, usuario);
+})

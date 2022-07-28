@@ -1,10 +1,14 @@
 const routes = require('express').Router();
-const { login } = require('../middlewares/auth');
-const { home, destroy, serveSignup, signup } = require('../controllers/authentication');
+const passport = require('passport');
+const { login, serveLogin, logout, serveSignup, signup, serveFailureLogin } = require('../controllers/authentication');
 
-routes.post('/home', login, home);
-routes.post('/desloguear', destroy);
 routes.get('/signup', serveSignup);
-routes.post('/signup', signup);
+routes.get('/login', serveLogin);
+
+routes.post('/login', passport.authenticate('login', {failureRedirect: '/serveFailure'}), login);
+routes.post('/signup', passport.authenticate('register'), signup);
+routes.post('/destroy', logout);
+
+routes.get('/serveFailure', serveFailureLogin);
 
 module.exports = routes

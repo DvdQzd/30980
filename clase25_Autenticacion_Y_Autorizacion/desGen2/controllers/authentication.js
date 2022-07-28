@@ -1,20 +1,18 @@
 const { add } = require("../models/users");
 
-const home = (req, res) => {
-    const {name} = req.body;
-    req.session.nombre = name;
+const login = (req, res) => {
     res.redirect('/');
 }
 
-const destroy = (req, res) => {
-    try {
-        console.log("Paso");
-        console.log(req.session)
-        req.session.destroy();
-        res.redirect('/');
-    } catch (error) {
-        res.status(500).send("Err: ", err);
-    }
+const serveLogin = (req, res) => {
+    res.render('pages/indexLogin');
+}
+
+const logout = (req, res) => {
+    req.session.destroy( err => {
+        if(err) return res.status(400).send({"error": err});
+        res.redirect('/')
+    })
 }
 
 const serveSignup = (req, res) => {
@@ -22,23 +20,18 @@ const serveSignup = (req, res) => {
 }
 
 const signup = (req, res) => {
-    const {name, password} = req.body;
-    try {
-        if(name && password){
-            add(name, password);
-            req.session.nombre = name;
-            res.redirect('/');
-        } else {
-            res.render('pages/indexLogin');
-        }
-    } catch (e) {
-        res.render('pages/indexLogin', {message: "Usuario existente!"});
-    }
+    res.redirect('/');
+}
+
+const serveFailureLogin = (req, res) => {
+    res.render('pages/failureLogin');
 }
 
 module.exports = {
-    home,
-    destroy,
+    login,
+    serveLogin,
+    logout,
     serveSignup,
-    signup
+    signup,
+    serveFailureLogin
 }
