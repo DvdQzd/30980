@@ -1,0 +1,7 @@
+
+
+git clone _url_  --> descarga el proyecto
+git pull        --> actualiza el proyecto
+git add _archivos_       --> agrega los archivos a stage
+git commit -m "mensaje"  --> agrega los archivos al repositorio local
+git push                --> sube los cambios locales a la nube
