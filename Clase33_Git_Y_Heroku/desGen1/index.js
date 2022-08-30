@@ -7,6 +7,9 @@ const PORT = process.env.PORT || 8081;
 // 2) Definir el script start: "node <archivo.js>" en el Package.json porque heroku usa ese script
 // usar el archivo .gitignore
 
+// para ver un monitoreo de los logs de el servidor en heroku correr este comando:
+// heroku logs --tail
+
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
