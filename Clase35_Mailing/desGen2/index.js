@@ -9,13 +9,13 @@ const nodemailer = require('nodemailer');
 const asunto = process.argv[2];
 const mensaje = process.argv[3];
 const to = process.argv[4];
-const attach = process.argv[5];
+const attach = process.argv[5] || '';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'cosmesfulanitocoderhouse@gmail.com',
-        pass: 'coderhouse',
+        pass: 'msyutsvhvxhkcqof',
     }
 });
 
@@ -24,8 +24,8 @@ const mailOptions = {
     to: to || 'cosmesfulanitocoderhouse@gmail.com',
     subject: asunto,
     html: mensaje,
-    attach: [{
-        path: 'chip.jpg',
+    attachments: [{
+        path: attach,
     }]
 };
 
