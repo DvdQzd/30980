@@ -1,0 +1,29 @@
+[
+  {
+    "tipo": "suma",
+    "params": [
+      "1231231231",
+      "43"
+    ],
+    "resultado": 1231231274,
+    "timestamp": 1662679650804
+  },
+  {
+    "tipo": "resta",
+    "params": [
+      "1231231231",
+      "43"
+    ],
+    "resultado": 1231231188,
+    "timestamp": 1662679654386
+  },
+  {
+    "tipo": "multiplicacion",
+    "params": [
+      "1231231231",
+      "43"
+    ],
+    "resultado": 52942942933,
+    "timestamp": 1662679658854
+  }
+]
